@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "condsites"
+version = "1.0.0"
+description = "Prompt and embedding conditioning sites in zero-shot voice cloning: experiment, scoring and analysis code"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Callum Macpherson" }]
+requires-python = ">=3.10"
+# Core: everything needed to go from the committed score files to the paper's tables and figures.
+dependencies = [
+  "numpy>=1.26",
+  "pandas>=2.1",
+  "scipy>=1.11",
+  "matplotlib>=3.8",
+  "soundfile>=0.12",
+  "librosa>=0.10",
+]
+
+[project.optional-dependencies]
+# Synthesis environments conflict with one another; install one per virtualenv (see docs/environments.md).
+qwen = ["qwen-tts==0.1.1", "torch==2.6.0", "torchaudio==2.6.0"]
+f5 = ["f5-tts==1.1.22", "torch==2.6.0", "torchaudio==2.6.0"]
+scoring = ["torch==2.6.0", "torchaudio==2.6.0", "s3prl", "transformers<4.50", "jiwer", "fire"]
+dev = ["pytest>=8", "ruff>=0.6", "torch>=2.5"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 130
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

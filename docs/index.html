@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speaker identity is split across conditioning sites: audio samples</title>
+<style>
+  :root { --ink: #1f1f1f; --muted: #6b6b66; --rule: #e3e3df; --accent: #2a78d6; }
+  body { font: 15px/1.55 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; color: var(--ink); max-width: 1040px; margin: 2.5rem auto; padding: 0 1.25rem; }
+  h1 { font-size: 1.45rem; margin-bottom: 0.3rem; }
+  h2 { font-size: 1.1rem; margin-top: 2.6rem; border-bottom: 1px solid var(--rule); padding-bottom: 0.3rem; }
+  h3 { font-size: 0.95rem; margin: 1.4rem 0 0.4rem; }
+  p.meta { color: var(--muted); margin-top: 0; }
+  a { color: var(--accent); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--rule); vertical-align: middle; }
+  th { font-weight: 600; color: var(--muted); }
+  audio { height: 32px; width: 220px; }
+  .text { font-style: italic; }
+  .note { color: var(--muted); font-size: 0.88rem; }
+</style>
+</head>
+<body>
+<h1>Speaker identity is split across conditioning sites</h1>
+<p class="meta">Audio samples for the paper by Callum Macpherson (2026). Code and data: <a href="https://github.com/CallumJMac/conditioning-sites">github.com/CallumJMac/conditioning-sites</a>.</p>
+
+<p>Each item below has the prompt the systems were given, a different recording of the same speaker
+(the held-out reference used for SIM-o), and each system's output with the prompt ("full") and with the
+prompt removed but the speaker embedding kept ("x-vector only"). The last table for each item is the
+CosyVoice-300M factorial, which switches the prompt and the two embedding sites on and off independently.</p>
+
+<p class="note">Items were drawn at random with a fixed seed (<code>scripts/build_samples.py</code>), not picked
+to illustrate the result. All voices are synthetic imitations of LibriTTS-R and Common Voice speakers.
+XTTS-v2 and F5-TTS outputs are licensed for non-commercial use only.</p>
+
+<div id="items"></div>
+
+<script>
+const names = { qwen06: "Qwen3-TTS 0.6B", qwen17: "Qwen3-TTS 1.7B", cosyvoice1: "CosyVoice-300M",
+  cosyvoice3: "CosyVoice 3", xtts: "XTTS-v2", chatterbox: "Chatterbox", f5tts: "F5-TTS (prompt only)" };
+const site = { qwen06: "LM", qwen17: "LM", cosyvoice1: "LM and flow", cosyvoice3: "flow only",
+  xtts: "vocoder only", chatterbox: "LM (T3)", f5tts: "none" };
+const player = (src) => src ? `<audio controls preload="none" src="${src}"></audio>` : "<span class='note'>n/a</span>";
+
+fetch("samples.json").then((response) => response.json()).then((items) => {
+  const root = document.getElementById("items");
+  items.forEach((item, index) => {
+    const systems = item.systems.map((row) => `<tr><td>${names[row.system]}</td><td>${site[row.system]}</td>
+      <td>${player(row.full)}</td><td>${player(row.xvector_only)}</td></tr>`).join("");
+    const cells = item.factorial.map((cell) => `<tr><td>${cell.label}</td><td>${player(cell.audio)}</td></tr>`).join("");
+    root.insertAdjacentHTML("beforeend", `
+      <h2>Item ${index + 1}: ${item.dataset}</h2>
+      <p class="text">"${item.text}"</p>
+      <table><tr><th>Prompt</th><th>Held-out recording of the speaker</th></tr>
+        <tr><td>${player(item.prompt)}</td><td>${player(item.heldout)}</td></tr></table>
+      <h3>Systems</h3>
+      <table><tr><th>System</th><th>Embedding enters</th><th>Full</th><th>X-vector only</th></tr>${systems}</table>
+      ${cells ? `<h3>CosyVoice-300M embedding-site factorial</h3><table><tr><th>Conditioning kept</th><th>Output</th></tr>${cells}</table>` : ""}`);
+  });
+});
+</script>
+</body>
+</html>

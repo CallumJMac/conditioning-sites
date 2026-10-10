@@ -1,0 +1,19 @@
+name: check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv venv --python 3.12 && uv pip install -e ".[dev]" --extra-index-url https://download.pytorch.org/whl/cpu
+      - name: Unit tests
+        run: .venv/bin/python -m pytest -q
+      - name: Paper numbers reproduce from the committed scores
+        run: make check PYTHON=.venv/bin/python
+      - name: Lint
+        run: .venv/bin/ruff check src tests scripts

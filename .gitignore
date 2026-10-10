@@ -1,0 +1,20 @@
+# Environments and downloaded models
+.venv*/
+.external/
+__pycache__/
+*.egg-info/
+
+# Downloaded or generated audio (fetch with scripts/fetch_data.py; samples live in docs/samples)
+data/libritts_r_aligned/audio/
+data/seedtts_en/
+data/*.tar
+audio/
+
+# LaTeX build files
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+paper/main.pdf
+paper/short/main.pdf

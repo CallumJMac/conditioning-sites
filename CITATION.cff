@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the paper."
+title: "Speaker identity is split across conditioning sites: code and data"
+authors:
+  - family-names: Macpherson
+    given-names: Callum
+version: 1.0.0
+date-released: 2026-10-10
+license: MIT
+repository-code: "https://github.com/CallumJMac/conditioning-sites"
+preferred-citation:
+  type: article
+  title: "Speaker Identity Is Split Across Conditioning Sites: Prompt and Embedding Pathways in Zero-Shot Voice Cloning"
+  authors:
+    - family-names: Macpherson
+      given-names: Callum
+  year: 2026
+  notes: "Preprint"
