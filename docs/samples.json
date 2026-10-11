@@ -1,0 +1,342 @@
+[
+  {
+    "id": "3729_6852_000078_000003",
+    "dataset": "LibriTTS-R",
+    "text": "I thanked him, but I was not deceived by his compliment.",
+    "prompt": "samples/3729_6852_000078_000003/prompt.mp3",
+    "heldout": "samples/3729_6852_000078_000003/heldout.mp3",
+    "systems": [
+      {
+        "system": "qwen06",
+        "full": "samples/3729_6852_000078_000003/qwen06_full.mp3",
+        "xvector_only": "samples/3729_6852_000078_000003/qwen06_xvector_only.mp3"
+      },
+      {
+        "system": "qwen17",
+        "full": "samples/3729_6852_000078_000003/qwen17_full.mp3",
+        "xvector_only": "samples/3729_6852_000078_000003/qwen17_xvector_only.mp3"
+      },
+      {
+        "system": "cosyvoice1",
+        "full": "samples/3729_6852_000078_000003/cosyvoice1_full.mp3",
+        "xvector_only": "samples/3729_6852_000078_000003/cosyvoice1_xvector_only.mp3"
+      },
+      {
+        "system": "cosyvoice3",
+        "full": "samples/3729_6852_000078_000003/cosyvoice3_full.mp3",
+        "xvector_only": "samples/3729_6852_000078_000003/cosyvoice3_xvector_only.mp3"
+      },
+      {
+        "system": "xtts",
+        "full": "samples/3729_6852_000078_000003/xtts_full.mp3",
+        "xvector_only": "samples/3729_6852_000078_000003/xtts_xvector_only.mp3"
+      },
+      {
+        "system": "chatterbox",
+        "full": "samples/3729_6852_000078_000003/chatterbox_full.mp3",
+        "xvector_only": "samples/3729_6852_000078_000003/chatterbox_xvector_only.mp3"
+      },
+      {
+        "system": "f5tts",
+        "full": "samples/3729_6852_000078_000003/f5tts_full.mp3"
+      }
+    ],
+    "factorial": [
+      {
+        "cell": "P1L1F1",
+        "label": "prompt, LM and flow embedding",
+        "audio": "samples/3729_6852_000078_000003/factorial_P1L1F1.mp3"
+      },
+      {
+        "cell": "P1L0F1",
+        "label": "prompt, flow embedding only",
+        "audio": "samples/3729_6852_000078_000003/factorial_P1L0F1.mp3"
+      },
+      {
+        "cell": "P1L1F0",
+        "label": "prompt, LM embedding only",
+        "audio": "samples/3729_6852_000078_000003/factorial_P1L1F0.mp3"
+      },
+      {
+        "cell": "P1L0F0",
+        "label": "prompt only",
+        "audio": "samples/3729_6852_000078_000003/factorial_P1L0F0.mp3"
+      },
+      {
+        "cell": "P0L1F1",
+        "label": "LM and flow embedding",
+        "audio": "samples/3729_6852_000078_000003/factorial_P0L1F1.mp3"
+      },
+      {
+        "cell": "P0L0F1",
+        "label": "flow embedding only",
+        "audio": "samples/3729_6852_000078_000003/factorial_P0L0F1.mp3"
+      },
+      {
+        "cell": "P0L1F0",
+        "label": "LM embedding only",
+        "audio": "samples/3729_6852_000078_000003/factorial_P0L1F0.mp3"
+      },
+      {
+        "cell": "P0L0F0",
+        "label": "no speaker information",
+        "audio": "samples/3729_6852_000078_000003/factorial_P0L0F0.mp3"
+      }
+    ]
+  },
+  {
+    "id": "2830_3980_000070_000001",
+    "dataset": "LibriTTS-R",
+    "text": "If he says, \"Thou shalt be damned,\" you tell him: \"No, for I fly to Christ who gave Himself for my sins.",
+    "prompt": "samples/2830_3980_000070_000001/prompt.mp3",
+    "heldout": "samples/2830_3980_000070_000001/heldout.mp3",
+    "systems": [
+      {
+        "system": "qwen06",
+        "full": "samples/2830_3980_000070_000001/qwen06_full.mp3",
+        "xvector_only": "samples/2830_3980_000070_000001/qwen06_xvector_only.mp3"
+      },
+      {
+        "system": "qwen17",
+        "full": "samples/2830_3980_000070_000001/qwen17_full.mp3",
+        "xvector_only": "samples/2830_3980_000070_000001/qwen17_xvector_only.mp3"
+      },
+      {
+        "system": "cosyvoice1",
+        "full": "samples/2830_3980_000070_000001/cosyvoice1_full.mp3",
+        "xvector_only": "samples/2830_3980_000070_000001/cosyvoice1_xvector_only.mp3"
+      },
+      {
+        "system": "cosyvoice3",
+        "full": "samples/2830_3980_000070_000001/cosyvoice3_full.mp3",
+        "xvector_only": "samples/2830_3980_000070_000001/cosyvoice3_xvector_only.mp3"
+      },
+      {
+        "system": "xtts",
+        "full": "samples/2830_3980_000070_000001/xtts_full.mp3",
+        "xvector_only": "samples/2830_3980_000070_000001/xtts_xvector_only.mp3"
+      },
+      {
+        "system": "chatterbox",
+        "full": "samples/2830_3980_000070_000001/chatterbox_full.mp3",
+        "xvector_only": "samples/2830_3980_000070_000001/chatterbox_xvector_only.mp3"
+      },
+      {
+        "system": "f5tts",
+        "full": "samples/2830_3980_000070_000001/f5tts_full.mp3"
+      }
+    ],
+    "factorial": [
+      {
+        "cell": "P1L1F1",
+        "label": "prompt, LM and flow embedding",
+        "audio": "samples/2830_3980_000070_000001/factorial_P1L1F1.mp3"
+      },
+      {
+        "cell": "P1L0F1",
+        "label": "prompt, flow embedding only",
+        "audio": "samples/2830_3980_000070_000001/factorial_P1L0F1.mp3"
+      },
+      {
+        "cell": "P1L1F0",
+        "label": "prompt, LM embedding only",
+        "audio": "samples/2830_3980_000070_000001/factorial_P1L1F0.mp3"
+      },
+      {
+        "cell": "P1L0F0",
+        "label": "prompt only",
+        "audio": "samples/2830_3980_000070_000001/factorial_P1L0F0.mp3"
+      },
+      {
+        "cell": "P0L1F1",
+        "label": "LM and flow embedding",
+        "audio": "samples/2830_3980_000070_000001/factorial_P0L1F1.mp3"
+      },
+      {
+        "cell": "P0L0F1",
+        "label": "flow embedding only",
+        "audio": "samples/2830_3980_000070_000001/factorial_P0L0F1.mp3"
+      },
+      {
+        "cell": "P0L1F0",
+        "label": "LM embedding only",
+        "audio": "samples/2830_3980_000070_000001/factorial_P0L1F0.mp3"
+      },
+      {
+        "cell": "P0L0F0",
+        "label": "no speaker information",
+        "audio": "samples/2830_3980_000070_000001/factorial_P0L0F0.mp3"
+      }
+    ]
+  },
+  {
+    "id": "cv_17442686-cv_17442688",
+    "dataset": "Seed-TTS-eval",
+    "text": "Do the roses compete in athletic events?",
+    "prompt": "samples/cv_17442686-cv_17442688/prompt.mp3",
+    "heldout": "samples/cv_17442686-cv_17442688/heldout.mp3",
+    "systems": [
+      {
+        "system": "qwen06",
+        "full": "samples/cv_17442686-cv_17442688/qwen06_full.mp3",
+        "xvector_only": "samples/cv_17442686-cv_17442688/qwen06_xvector_only.mp3"
+      },
+      {
+        "system": "qwen17",
+        "full": "samples/cv_17442686-cv_17442688/qwen17_full.mp3",
+        "xvector_only": "samples/cv_17442686-cv_17442688/qwen17_xvector_only.mp3"
+      },
+      {
+        "system": "cosyvoice1",
+        "full": "samples/cv_17442686-cv_17442688/cosyvoice1_full.mp3",
+        "xvector_only": "samples/cv_17442686-cv_17442688/cosyvoice1_xvector_only.mp3"
+      },
+      {
+        "system": "cosyvoice3",
+        "full": "samples/cv_17442686-cv_17442688/cosyvoice3_full.mp3",
+        "xvector_only": "samples/cv_17442686-cv_17442688/cosyvoice3_xvector_only.mp3"
+      },
+      {
+        "system": "xtts",
+        "full": "samples/cv_17442686-cv_17442688/xtts_full.mp3",
+        "xvector_only": "samples/cv_17442686-cv_17442688/xtts_xvector_only.mp3"
+      },
+      {
+        "system": "chatterbox",
+        "full": "samples/cv_17442686-cv_17442688/chatterbox_full.mp3",
+        "xvector_only": "samples/cv_17442686-cv_17442688/chatterbox_xvector_only.mp3"
+      },
+      {
+        "system": "f5tts",
+        "full": "samples/cv_17442686-cv_17442688/f5tts_full.mp3"
+      }
+    ],
+    "factorial": [
+      {
+        "cell": "P1L1F1",
+        "label": "prompt, LM and flow embedding",
+        "audio": "samples/cv_17442686-cv_17442688/factorial_P1L1F1.mp3"
+      },
+      {
+        "cell": "P1L0F1",
+        "label": "prompt, flow embedding only",
+        "audio": "samples/cv_17442686-cv_17442688/factorial_P1L0F1.mp3"
+      },
+      {
+        "cell": "P1L1F0",
+        "label": "prompt, LM embedding only",
+        "audio": "samples/cv_17442686-cv_17442688/factorial_P1L1F0.mp3"
+      },
+      {
+        "cell": "P1L0F0",
+        "label": "prompt only",
+        "audio": "samples/cv_17442686-cv_17442688/factorial_P1L0F0.mp3"
+      },
+      {
+        "cell": "P0L1F1",
+        "label": "LM and flow embedding",
+        "audio": "samples/cv_17442686-cv_17442688/factorial_P0L1F1.mp3"
+      },
+      {
+        "cell": "P0L0F1",
+        "label": "flow embedding only",
+        "audio": "samples/cv_17442686-cv_17442688/factorial_P0L0F1.mp3"
+      },
+      {
+        "cell": "P0L1F0",
+        "label": "LM embedding only",
+        "audio": "samples/cv_17442686-cv_17442688/factorial_P0L1F0.mp3"
+      },
+      {
+        "cell": "P0L0F0",
+        "label": "no speaker information",
+        "audio": "samples/cv_17442686-cv_17442688/factorial_P0L0F0.mp3"
+      }
+    ]
+  },
+  {
+    "id": "cv_20798109-cv_20798113",
+    "dataset": "Seed-TTS-eval",
+    "text": "A combination of rock, punk and pop music, this album made the band famous.",
+    "prompt": "samples/cv_20798109-cv_20798113/prompt.mp3",
+    "heldout": "samples/cv_20798109-cv_20798113/heldout.mp3",
+    "systems": [
+      {
+        "system": "qwen06",
+        "full": "samples/cv_20798109-cv_20798113/qwen06_full.mp3",
+        "xvector_only": "samples/cv_20798109-cv_20798113/qwen06_xvector_only.mp3"
+      },
+      {
+        "system": "qwen17",
+        "full": "samples/cv_20798109-cv_20798113/qwen17_full.mp3",
+        "xvector_only": "samples/cv_20798109-cv_20798113/qwen17_xvector_only.mp3"
+      },
+      {
+        "system": "cosyvoice1",
+        "full": "samples/cv_20798109-cv_20798113/cosyvoice1_full.mp3",
+        "xvector_only": "samples/cv_20798109-cv_20798113/cosyvoice1_xvector_only.mp3"
+      },
+      {
+        "system": "cosyvoice3",
+        "full": "samples/cv_20798109-cv_20798113/cosyvoice3_full.mp3",
+        "xvector_only": "samples/cv_20798109-cv_20798113/cosyvoice3_xvector_only.mp3"
+      },
+      {
+        "system": "xtts",
+        "full": "samples/cv_20798109-cv_20798113/xtts_full.mp3",
+        "xvector_only": "samples/cv_20798109-cv_20798113/xtts_xvector_only.mp3"
+      },
+      {
+        "system": "chatterbox",
+        "full": "samples/cv_20798109-cv_20798113/chatterbox_full.mp3",
+        "xvector_only": "samples/cv_20798109-cv_20798113/chatterbox_xvector_only.mp3"
+      },
+      {
+        "system": "f5tts",
+        "full": "samples/cv_20798109-cv_20798113/f5tts_full.mp3"
+      }
+    ],
+    "factorial": [
+      {
+        "cell": "P1L1F1",
+        "label": "prompt, LM and flow embedding",
+        "audio": "samples/cv_20798109-cv_20798113/factorial_P1L1F1.mp3"
+      },
+      {
+        "cell": "P1L0F1",
+        "label": "prompt, flow embedding only",
+        "audio": "samples/cv_20798109-cv_20798113/factorial_P1L0F1.mp3"
+      },
+      {
+        "cell": "P1L1F0",
+        "label": "prompt, LM embedding only",
+        "audio": "samples/cv_20798109-cv_20798113/factorial_P1L1F0.mp3"
+      },
+      {
+        "cell": "P1L0F0",
+        "label": "prompt only",
+        "audio": "samples/cv_20798109-cv_20798113/factorial_P1L0F0.mp3"
+      },
+      {
+        "cell": "P0L1F1",
+        "label": "LM and flow embedding",
+        "audio": "samples/cv_20798109-cv_20798113/factorial_P0L1F1.mp3"
+      },
+      {
+        "cell": "P0L0F1",
+        "label": "flow embedding only",
+        "audio": "samples/cv_20798109-cv_20798113/factorial_P0L0F1.mp3"
+      },
+      {
+        "cell": "P0L1F0",
+        "label": "LM embedding only",
+        "audio": "samples/cv_20798109-cv_20798113/factorial_P0L1F0.mp3"
+      },
+      {
+        "cell": "P0L0F0",
+        "label": "no speaker information",
+        "audio": "samples/cv_20798109-cv_20798113/factorial_P0L0F0.mp3"
+      }
+    ]
+  }
+]

@@ -39,3 +39,11 @@ select = ["E4", "E7", "E9", "F", "I", "B"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.uv]
+# The synthesis and scoring extras pin incompatible library versions; install one per environment.
+conflicts = [
+  [{ extra = "qwen" }, { extra = "scoring" }],
+  [{ extra = "qwen" }, { extra = "f5" }],
+  [{ extra = "f5" }, { extra = "scoring" }],
+]
