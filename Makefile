@@ -1,6 +1,6 @@
 # Regenerate everything downstream of the committed per-utterance scores.
 #   make reproduce   recompute analysis CSVs, tables and figures, then build the paper
-#   make check       reproduce and fail if any committed number changes
+#   make check       reproduce and fail if any committed number changes (CSV values to 1e-9 relative)
 #   make test        unit tests
 PYTHON ?= python
 
@@ -19,8 +19,7 @@ paper:
 	cd paper && pdflatex -interaction=nonstopmode main.tex > /dev/null && bibtex main > /dev/null && pdflatex -interaction=nonstopmode main.tex > /dev/null && pdflatex -interaction=nonstopmode main.tex > /dev/null
 
 check: analysis report
-	git diff --exit-code -- results/analysis paper/tables
-	@echo "All committed analysis outputs and paper tables reproduce from the score files."
+	$(PYTHON) scripts/compare_outputs.py
 
 test:
 	$(PYTHON) -m pytest -q

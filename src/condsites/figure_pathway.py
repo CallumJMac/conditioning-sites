@@ -77,8 +77,8 @@ def main() -> int:
     figure.legend(handles=handles, loc="lower center", ncol=4, frameon=False, fontsize=6.5, bbox_to_anchor=(0.55, -0.06))
     figure.tight_layout(rect=(0, 0.06, 1, 1))
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    figure.savefig(args.output, bbox_inches="tight")
-    figure.savefig(args.output.with_suffix(".png"), dpi=200, bbox_inches="tight")
+    figure.savefig(args.output, bbox_inches="tight", metadata={"CreationDate": None})
+    figure.savefig(args.output.with_suffix(".png"), dpi=200, bbox_inches="tight", metadata={"Software": None})
     return 0
 
 

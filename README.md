@@ -42,8 +42,10 @@ make paper PYTHON=.venv/bin/python           # paper/main.pdf (needs a LaTeX ins
 
 `make check` recomputes `results/analysis/*.csv` from
 `results/scores/pathway_scores.csv`, regenerates `paper/tables/` and
-`paper/figures/`, and runs `git diff --exit-code` on them. It is run on every
-push (`.github/workflows/check.yml`).
+`paper/figures/`, and compares them with the committed versions: CSV values to a
+relative tolerance of 1e-9 (the last digits of p-values differ between NumPy and
+SciPy builds) and the paper tables exactly. It runs on every push
+(`.github/workflows/check.yml`).
 
 | Paper item | Source data | Produced by |
 |---|---|---|

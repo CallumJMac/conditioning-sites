@@ -135,8 +135,8 @@ def sites_figure_and_table(results: Path, output: Path) -> None:
     axes[0].legend(frameon=False, fontsize=7, loc="upper right")
     figure.tight_layout()
     (output / "figures").mkdir(parents=True, exist_ok=True)
-    figure.savefig(output / "figures" / "sites_factorial.pdf", bbox_inches="tight")
-    figure.savefig(output / "figures" / "sites_factorial.png", dpi=200, bbox_inches="tight")
+    figure.savefig(output / "figures" / "sites_factorial.pdf", bbox_inches="tight", metadata={"CreationDate": None})
+    figure.savefig(output / "figures" / "sites_factorial.png", dpi=200, bbox_inches="tight", metadata={"Software": None})
 
 
 def failures_table(results: Path, output: Path) -> None:
