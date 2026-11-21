@@ -315,19 +315,23 @@ class CmosStudy {
             userAgent: navigator.userAgent,
             submittedAt: new Date().toISOString(),
         };
-        if (!this.config.resultsEndpoint) {
+        const download = () => {
             const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
             link.download = `results_${this.participantId}.json`;
             link.click();
+        };
+        if (!this.config.resultsEndpoint) {
+            download();
             return;
         }
         // text/plain avoids a CORS preflight, which Apps Script does not answer.
+        // If the upload fails, fall back to a download so no results are lost.
         await fetch(this.config.resultsEndpoint, {
             method: 'POST',
             headers: { 'Content-Type': 'text/plain;charset=utf-8' },
             body: JSON.stringify(payload),
-        }).catch(() => {});
+        }).catch(download);
     }
 }
