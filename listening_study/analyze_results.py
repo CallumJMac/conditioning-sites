@@ -21,6 +21,11 @@ model score ~ C(system) on the similarity axis, testing whether removing the
 prompt costs more perceived identity in CosyVoice 3 (embedding in the decoder
 only) than in Qwen3-TTS (embedding conditions the language model).
 
+Sequential stopping rule (fixed before data collection): analyse once 40
+listeners remain after exclusions. If the headline system effect has p < 0.0294,
+stop; otherwise recruit 40 more and test once more at p < 0.0294 (Pocock
+boundary, overall alpha 0.05 over two looks). Report both looks.
+
 Usage:
     python analyze_results.py --results path/to/dir_or_raw.csv --config configs/study.json
 """
