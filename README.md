@@ -4,6 +4,7 @@ Code, experiment design, per-utterance scores and paper sources for
 *Speaker Identity Is Split Across Conditioning Sites: Prompt and Embedding
 Pathways in Zero-Shot Voice Cloning* (Callum Macpherson, 2026; preprint
 forthcoming). Audio samples: <https://callumjmac.github.io/conditioning-sites/>.
+Write-up: <https://callumjmac.github.io/posts/voice-cloning-conditioning-sites/>.
 
 Most zero-shot TTS systems condition on the target speaker twice: through an
 in-context acoustic prompt, and through a speaker embedding that some systems
