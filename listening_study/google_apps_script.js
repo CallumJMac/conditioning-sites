@@ -8,6 +8,10 @@
  *   4. Copy the URL into configs/study.json "resultsEndpoint"
  *
  * The client posts with Content-Type text/plain to avoid a CORS preflight.
+ *
+ * Read access for monitoring: set a Script property READ_KEY (Project Settings >
+ * Script properties). GET <url>?key=<READ_KEY> returns the Raw sheet as JSON;
+ * without the key, GET only reports that the endpoint is active.
  */
 
 function doPost(e) {
@@ -48,5 +52,12 @@ function doPost(e) {
 }
 
 function doGet(e) {
-  return ContentService.createTextOutput("Listening study results endpoint active.");
+  const readKey = PropertiesService.getScriptProperties().getProperty("READ_KEY");
+  if (!readKey || !e || !e.parameter || e.parameter.key !== readKey) {
+    return ContentService.createTextOutput("Listening study results endpoint active.");
+  }
+  const rawSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Raw");
+  const rows = rawSheet ? rawSheet.getDataRange().getValues() : [];
+  return ContentService.createTextOutput(JSON.stringify({ status: "ok", rows: rows }))
+    .setMimeType(ContentService.MimeType.JSON);
 }
