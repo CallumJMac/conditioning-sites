@@ -18,7 +18,7 @@ const SCALE = [
 ];
 
 const QUESTIONS = {
-    naturalness: 'Which sample sounds more <b>natural</b>, like a real person speaking?',
+    naturalness: 'Which sample sounds more <b>natural</b>, like a real person speaking? Ignore background noise and recording quality.',
     similarity: 'Which sample sounds more like the <b>same speaker</b> as the Reference?',
 };
 
@@ -175,7 +175,7 @@ class CmosStudy {
             <h1>Instructions</h1>
             <p>On each page you will hear two clips, <b>A</b> and <b>B</b>, saying the same sentence. Listen to both fully (you may replay them) and then choose an answer on the scale.</p>
             <p>There are two parts:</p>
-            <ul><li><b>Naturalness</b>: which clip sounds more like a real person speaking naturally?</li>
+            <ul><li><b>Naturalness</b>: which clip sounds more like a real person speaking naturally? Ignore background noise and recording quality.</li>
             <li><b>Speaker match</b>: first listen to a <b>Reference</b> clip of a speaker; then judge which of A or B sounds more like that same person. Ignore what is being said.</li></ul>
             <p>Differences can be small. If you genuinely cannot hear a difference, choose "About the same", but please give your best judgement.</p>
             <button class="btn" id="go">Start practice</button>`;
@@ -196,7 +196,7 @@ class CmosStudy {
 
     render_block_intro(body, page) {
         const text = page.axis === 'naturalness'
-            ? 'In this part, judge <b>naturalness</b>: which clip sounds more like a real person speaking?'
+            ? 'In this part, judge <b>naturalness</b>: which clip sounds more like a real person speaking? Ignore background noise and recording quality.'
             : 'In this part, judge <b>speaker match</b>: listen to the Reference, then decide which clip sounds more like the same person.';
         body.innerHTML = `<h1>${page.axis === 'naturalness' ? 'Part: Naturalness' : 'Part: Speaker match'}</h1><p>${text}</p><button class="btn" id="go">Begin</button>`;
         body.querySelector('#go').onclick = () => this.next();
@@ -226,8 +226,11 @@ class CmosStudy {
         if (page.axis === 'similarity') {
             reference = page.kind === 'pair' ? this.config.pairs[page.pairId].reference : this.config.traps.find(item => item.id === page.trapId).reference;
         }
+        const trialPages = this.pages.filter(item => item.type === 'trial');
+        const number = trialPages.indexOf(page) + 1;
         const shownAt = Date.now();
         this.renderComparison(body, {
+            title: `Comparison ${number} of ${trialPages.length}`,
             question: QUESTIONS[page.axis],
             reference, a, b,
             onAnswer: (score, plays) => {
