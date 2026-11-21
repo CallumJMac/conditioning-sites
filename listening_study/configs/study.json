@@ -1,7 +1,7 @@
 {
   "testId": "pathway_v2_cmos_v1",
   "resultsEndpoint": "https://script.google.com/macros/s/AKfycbzmYo0AxQo9WVA7LiOm0M0sWfR6A2Lf0hG28C1NEX8lHOPMK7Gmhoo000K6L1xjnd225Q/exec",
-  "prolificCompletionUrl": "https://app.prolific.com/submissions/complete?cc=REPLACE_ME",
+  "prolificCompletionUrl": "https://app.prolific.com/submissions/complete?cc=C1JSKMFA",
   "headphone": {
     "trials": [
       {
