@@ -150,13 +150,14 @@ def main() -> int:
                     "reference": f"audio/pairs/{pair_id}/reference.wav",
                     "icl_job_id": full["job_id"], "xvec_job_id": xvec["job_id"],
                 })
-    # Stratified halves: alternate within each system x dataset cell so every list
-    # rates every cell on both axes; order within lists is randomised in the browser.
-    half_a, half_b = [], []
+    # Stratified quarters: every fourth item within each system x dataset cell, so
+    # every list rates every cell on both axes and each listener hears each pair once
+    # (about 34 trials, 12 minutes); order within lists is randomised in the browser.
+    quarters = [[], [], [], []]
     for cell in sorted({(pair["system"], pair["arm"]) for pair in pairs}):
         members = [pair["id"] for pair in pairs if (pair["system"], pair["arm"]) == cell]
-        half_a += members[0::2]
-        half_b += members[1::2]
+        for index in range(4):
+            quarters[index] += members[index::4]
 
     # Traps and practice use LibriTTS-R items not in the main set (Qwen3-TTS 1.7B).
     spare = [key for key in sorted(complete) if key[0] == "qwen17" and key[1] == "pathway_libritts" and key[2] not in used][:3]
@@ -198,8 +199,10 @@ def main() -> int:
         "headphone": {"trials": huggins, "nTrials": 6, "passThreshold": 5},
         "practice": {"a": "audio/practice/a.wav", "b": "audio/practice/b.wav", "reference": "audio/practice/reference.wav"},
         "lists": {
-            "A": {"naturalness": half_a, "similarity": half_b},
-            "B": {"naturalness": half_b, "similarity": half_a},
+            "A1": {"naturalness": quarters[0], "similarity": quarters[2]},
+            "A2": {"naturalness": quarters[1], "similarity": quarters[3]},
+            "B1": {"naturalness": quarters[2], "similarity": quarters[0]},
+            "B2": {"naturalness": quarters[3], "similarity": quarters[1]},
         },
         "pairs": {pair["id"]: pair for pair in pairs},
         "traps": traps,

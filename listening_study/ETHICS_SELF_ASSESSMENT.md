@@ -8,7 +8,7 @@ criteria commonly used to classify research as minimal risk.
 ## Study
 
 Adult volunteers recruited on Prolific listen to pairs of short synthetic speech
-clips (about 25 minutes) and rate which sounds more natural, or more like a
+clips (about 12 minutes) and rate which sounds more natural, or more like a
 reference speaker. Details: `DEPLOY.md`.
 
 ## Assessment
@@ -20,7 +20,7 @@ reference speaker. Details: `DEPLOY.md`.
 | Data collected | Prolific ID, screening answers (first language, hearing difficulties, playback device), ratings, timings, optional free-text comment, browser user agent |
 | Personal data | No names, contact details, audio or video of participants; Prolific IDs are removed before any data are shared |
 | Consent | Informed consent page before the study; participants can withdraw at any time by closing the page |
-| Payment | GBP 4.50 for about 25 minutes (about GBP 11/h), above Prolific's recommended minimum |
+| Payment | GBP 2.00 for about 12 minutes (about GBP 10/h), above Prolific's recommended minimum |
 | Voices | All rated voices imitate speakers from public, consented corpora (LibriTTS-R from LibriVox readers; Common Voice contributors); no real person is newly recorded or impersonated |
 | Storage | Responses are stored in a Google Sheet owned by the researcher; published data are anonymised |
 

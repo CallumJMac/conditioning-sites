@@ -14,14 +14,14 @@ more perceived speaker identity for CosyVoice 3 than for Qwen3-TTS.
 | Naturalness | CMOS, 7-point A/B scale (-3..+3) | ITU-T P.800 Annex E (CCR); paired tests are more sensitive than absolute MOS for small differences |
 | Speaker match | CSMOS: Reference clip, then "which of A/B is more like the same speaker" | Reference is a *different* utterance of the speaker, not the target recording |
 | Stimuli | 60 pairs: 2 systems x 2 datasets x 15 items, drawn at random (seed 20261009); LibriTTS-R items use distinct speakers | No metric-based selection, to avoid biasing the result |
-| Counterbalancing | Halves stratified by system x dataset (8/7 per cell): list A rates half 1 for naturalness and half 2 for speaker match; list B reversed. Block order, trial order and A/B side randomised per listener | Each listener hears each pair once and rates every cell on both axes |
+| Counterbalancing | Four lists from stratified quarters (every fourth item within each system x dataset cell): list A1 rates quarter 1 for naturalness and quarter 3 for speaker match, A2 quarters 2 and 4, B1 and B2 the reverse. Each listener hears each pair once (28 to 32 pairs plus 4 traps); block order, trial order and A/B side randomised per listener | Every list covers every cell on both axes; short sessions allow more listeners, which matters more than more items |
 | Loudness | All speech normalised to -23 LUFS (ffmpeg loudnorm) | Prevents loudness driving preference |
 | Headphone screen | Huggins pitch, 6 x 3AFC trials, pass >= 5/6 | Milne et al., Behav. Res. Methods, 2021 (doi:10.3758/s13428-020-01514-0); 6/6 is the stricter option |
 | Traps (per block) | Natural vs heavily degraded (expect clear preference); identical clips (expect ~0) | Exclude listeners failing more than one of the four |
 | Other exclusions | Completion time < 1/3 of median | Pre-registered in `analyze_results.py` |
-| Listeners | Recruit 48, target >= 40 after exclusions (~600 ratings per axis, ~20 per pair) | Wester et al., Interspeech 2015 (doi:10.21437/Interspeech.2015-689): more listeners matter more than more items |
+| Listeners | Two-stage sequential design. Stage 1: 40 listeners after exclusions. If the headline test (CosyVoice 3 vs Qwen3-TTS, speaker-match axis) has p < 0.0294, stop; otherwise recruit 40 more and test once at p < 0.0294 (Pocock boundary, overall alpha 0.05 over two looks). Fixed before any data are collected | Simulation from the dummy run (per-rating SD 1.8): power about 0.95 at an effect of 0.6 with 80 listeners; about 0.6 at 0.3 |
 | Analysis | LMM, score ~ 1 + (1 \| listener) + (1 \| pair), per axis; Bonferroni over 2 axes; sign test over pairs. Headline: score ~ system on the speaker-match axis | Crossed random effects; reporting follows Kirkland et al., SSW 2023 (state scale labels and instructions) |
-| Length / pay | ~25 min; GBP 4.50 (~GBP 11/h) | Prolific recommends at least GBP 9/h (pay-rates page, Jul 2026) |
+| Length / pay | ~12 min; GBP 2.00 (~GBP 10/h) | Prolific recommends at least GBP 9/h (pay-rates page, Jul 2026) |
 
 The power of the design is indicative only. Check it with a simulation once the
 dummy test gives a realistic per-rating SD.
@@ -65,5 +65,5 @@ Analyse dummy runs with:
 5. **Prolific settings:**
    - Study URL: `https://<host>/index.html?PROLIFIC_PID={{%PROLIFIC_PID%}}&STUDY_ID={{%STUDY_ID%}}&SESSION_ID={{%SESSION_ID%}}`
    - Filters: first language English, no hearing difficulties, approval rate at least 95%, desktop only.
-   - Places: 48. Estimated time: 25 min.
+   - Places: 5 for the pilot, then batches up to 40 analysable listeners (stage 1). Estimated time: 12 min.
 6. **Pilot:** run 5 participants, check timings and trap pass rates, then release the rest.

@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voice Cloning Listening Study</title>
-    <link rel="stylesheet" href="css/style.css?v=5">
+    <link rel="stylesheet" href="css/style.css?v=6">
 </head>
 <body>
     <div id="app">
         <div id="page-container"></div>
     </div>
-    <script src="js/cmos.js?v=5"></script>
+    <script src="js/cmos.js?v=6"></script>
     <script>
-        fetch('configs/study.json?v=5')
+        fetch('configs/study.json?v=6')
             .then(response => response.json())
             .then(config => new CmosStudy(config).start());
     </script>
