@@ -6,7 +6,8 @@ the "Raw" sheet (column "json"). Scores are recoded so that positive = x-vector
 pathway preferred (CMOS for naturalness, CSMOS for speaker match).
 
 Exclusions (applied in order, all reported):
-1. screened out at the headphone check (Huggins pitch, < 5/6 correct);
+1. screened out: loudspeakers or reported hearing difficulty at the in-study
+   screening, or the headphone check (Huggins pitch, < 5/6 correct);
 2. failed traps: more than one of (degraded trap preferring the degraded clip,
    i.e. score not >= 1 towards natural; identical trap with |score| >= 2);
 3. completion time under one third of the median.

@@ -16,12 +16,12 @@ more perceived speaker identity for CosyVoice 3 than for Qwen3-TTS.
 | Stimuli | 60 pairs: 2 systems x 2 datasets x 15 items, drawn at random (seed 20261009); LibriTTS-R items use distinct speakers | No metric-based selection, to avoid biasing the result |
 | Counterbalancing | Four lists from stratified quarters (every fourth item within each system x dataset cell): list A1 rates quarter 1 for naturalness and quarter 3 for speaker match, A2 quarters 2 and 4, B1 and B2 the reverse. Each listener hears each pair once (28 to 32 pairs plus 4 traps); block order, trial order and A/B side randomised per listener | Every list covers every cell on both axes; short sessions allow more listeners, which matters more than more items |
 | Loudness | All speech normalised to -23 LUFS (ffmpeg loudnorm) | Prevents loudness driving preference |
-| Headphone screen | Huggins pitch, 6 x 3AFC trials, pass >= 5/6 | Milne et al., Behav. Res. Methods, 2021 (doi:10.3758/s13428-020-01514-0); 6/6 is the stricter option |
+| Headphone screen | In-study screening first: loudspeakers or any reported hearing difficulty end the session. Then a volume-setting page, then Huggins pitch, 6 x 3AFC trials, pass >= 5/6 | Milne et al., Behav. Res. Methods, 2021 (doi:10.3758/s13428-020-01514-0). Pilot (2026-11-22): 6 of 11 failed, all at 3/6 or below; all passes were 6/6 |
 | Traps (per block) | Natural vs heavily degraded (expect clear preference); identical clips (expect ~0) | Exclude listeners failing more than one of the four |
 | Other exclusions | Completion time < 1/3 of median | Pre-registered in `analyze_results.py` |
 | Listeners | Two-stage sequential design. Stage 1: 40 listeners after exclusions. If the headline test (CosyVoice 3 vs Qwen3-TTS, speaker-match axis) has p < 0.0294, stop; otherwise recruit 40 more and test once at p < 0.0294 (Pocock boundary, overall alpha 0.05 over two looks). Fixed before any data are collected | Simulation from the dummy run (per-rating SD 1.8): power about 0.95 at an effect of 0.6 with 80 listeners; about 0.6 at 0.3 |
 | Analysis | LMM, score ~ 1 + (1 \| listener) + (1 \| pair), per axis; Bonferroni over 2 axes; sign test over pairs. Headline: score ~ system on the speaker-match axis | Crossed random effects; reporting follows Kirkland et al., SSW 2023 (state scale labels and instructions) |
-| Length / pay | ~12 min; GBP 2.00 (~GBP 10/h) | Prolific recommends at least GBP 9/h (pay-rates page, Jul 2026) |
+| Length / pay | ~22 min (pilot median 21.9 min, range 16.5 to 24.7); GBP 3.70 (~GBP 10/h). Screened-out participants are sent to a paid Prolific screening path | Prolific recommends at least GBP 9/h (pay-rates page, Jul 2026) |
 
 The power of the design is indicative only. Check it with a simulation once the
 dummy test gives a realistic per-rating SD.
@@ -65,5 +65,5 @@ Analyse dummy runs with:
 5. **Prolific settings:**
    - Study URL: `https://<host>/index.html?PROLIFIC_PID={{%PROLIFIC_PID%}}&STUDY_ID={{%STUDY_ID%}}&SESSION_ID={{%SESSION_ID%}}`
    - Filters: first language English, no hearing difficulties, approval rate at least 95%, desktop only.
-   - Places: 5 for the pilot, then batches up to 40 analysable listeners (stage 1). Estimated time: 12 min.
+   - Places: 5 for the pilot, then batches up to 40 analysable listeners (stage 1). Estimated time: 22 min.
 6. **Pilot:** run 5 participants, check timings and trap pass rates, then release the rest.

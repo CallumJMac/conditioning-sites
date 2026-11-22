@@ -61,7 +61,7 @@ class CmosStudy {
     }
 
     buildPages() {
-        const pages = [{ type: 'consent' }, { type: 'screening' }, { type: 'headphone' }, { type: 'instructions' }];
+        const pages = [{ type: 'consent' }, { type: 'screening' }, { type: 'volume' }, { type: 'headphone' }, { type: 'instructions' }];
         pages.push({ type: 'practice' });
         for (const axis of shuffle(['naturalness', 'similarity'], this.random)) {
             pages.push({ type: 'block_intro', axis });
@@ -101,7 +101,7 @@ class CmosStudy {
             <h1>Listening study: synthetic voices</h1>
             <div class="consent-box">
                 <p>You are invited to take part in a research study about computer-generated (synthetic) speech. All voices you will rate are produced by text-to-speech systems imitating speakers from public, consented speech corpora (LibriVox audiobook readers and Common Voice volunteers).</p>
-                <p>You will compare pairs of short audio clips and say which sounds more natural, or which sounds more like a reference speaker. The study takes about 12 to 15 minutes. <b>You must wear headphones</b> and be in a quiet place.</p>
+                <p>You will compare pairs of short audio clips and say which sounds more natural, or which sounds more like a reference speaker. The study takes about 20 to 25 minutes. <b>You must wear headphones</b> and be in a quiet place.</p>
                 <p>Participation is voluntary and you may withdraw at any time by closing this page. We store only your Prolific ID, your answers, and timing information. Data are anonymised for analysis, kept securely, and used only for research publications.</p>
                 <p>Contact: callumjmac@outlook.com. This study was reviewed by the researcher against standard ethical guidelines for low-risk research: it involves anonymous adult volunteers rating audio only, collects no personal or sensitive data, and you can withdraw at any time without penalty.</p>
             </div>
@@ -135,8 +135,36 @@ class CmosStudy {
                 body.querySelector('#error').textContent = 'Please answer all questions.';
                 return;
             }
+            if (this.screening.hearing === 'yes' || this.screening.device === 'speakers') {
+                return this.screenOut(body, 'This study needs headphones and no known hearing difficulties, so we cannot continue.');
+            }
             this.next();
         };
+    }
+
+    render_volume(body) {
+        body.innerHTML = `
+            <h1>Set your volume</h1>
+            <p>Put your headphones on, with both ears covered, in a quiet place.</p>
+            <p>Play this clip and adjust your computer's volume until the speech is <b>clearly audible and comfortable</b>. Keep this volume for the rest of the study.</p>
+            <p>The next check is hard on purpose: it plays a <b>faint tone</b> that is only audible through headphones. Listen carefully to each sound before answering.</p>
+            <audio id="clip" src="${this.config.practice.reference}" preload="auto"></audio>
+            <button class="btn play" id="play">Play clip</button>
+            <button class="btn" id="go" ${this.debug ? '' : 'disabled'}>My volume is set</button>`;
+        const clip = body.querySelector('#clip');
+        body.querySelector('#play').onclick = () => { clip.currentTime = 0; clip.play(); };
+        clip.onended = () => { body.querySelector('#go').disabled = false; };
+        body.querySelector('#go').onclick = () => this.next();
+    }
+
+    screenOut(body, reason) {
+        const url = this.config.prolificScreenedOutUrl;
+        const redirect = this.prolific.pid && url;
+        body.innerHTML = `<h1>Thank you</h1><p>${reason}</p>` +
+            (redirect ? '<p>Returning you to Prolific...</p>' : '<p>Please return the study on Prolific.</p>');
+        this.submit(true).then(() => {
+            if (redirect) setTimeout(() => { window.location.href = url; }, 2500);
+        });
     }
 
     render_headphone(body) {
@@ -163,8 +191,7 @@ class CmosStudy {
                     const correct = this.headphone.answers.filter(item => item.correct).length;
                     this.headphone.passed = correct >= settings.passThreshold;
                     if (this.headphone.passed) return this.next();
-                    body.innerHTML = `<h1>Thank you</h1><p>Unfortunately the headphone check was not passed, so we cannot continue. This usually means headphones were not used. Please return the study on Prolific.</p>`;
-                    this.submit(true);
+                    this.screenOut(body, 'Unfortunately the headphone check was not passed, so we cannot continue. This usually means headphones were not used.');
                 };
             });
         };
