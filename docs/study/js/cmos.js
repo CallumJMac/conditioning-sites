@@ -4,7 +4,7 @@
  * or downloaded as JSON when no endpoint is configured (dummy testing).
  *
  * URL parameters: PROLIFIC_PID, STUDY_ID, SESSION_ID (from Prolific),
- * list=A1|A2|B1|B2 (optional override), debug=1 (skip audio-play enforcement).
+ * list=L1..L8 (optional override), debug=1 (skip audio-play enforcement).
  */
 
 const SCALE = [
@@ -101,7 +101,7 @@ class CmosStudy {
             <h1>Listening study: synthetic voices</h1>
             <div class="consent-box">
                 <p>You are invited to take part in a research study about computer-generated (synthetic) speech. All voices you will rate are produced by text-to-speech systems imitating speakers from public, consented speech corpora (LibriVox audiobook readers and Common Voice volunteers).</p>
-                <p>You will compare pairs of short audio clips and say which sounds more natural, or which sounds more like a reference speaker. The study takes about 20 to 25 minutes. <b>You must wear headphones</b> and be in a quiet place.</p>
+                <p>You will compare pairs of short audio clips and say which sounds more natural, or which sounds more like a reference speaker. The study takes about 12 to 15 minutes. <b>You must wear headphones</b> and be in a quiet place.</p>
                 <p>Participation is voluntary and you may withdraw at any time by closing this page. We store only your Prolific ID, your answers, and timing information. Data are anonymised for analysis, kept securely, and used only for research publications.</p>
                 <p>Contact: callumjmac@outlook.com. This study was reviewed by the researcher against standard ethical guidelines for low-risk research: it involves anonymous adult volunteers rating audio only, collects no personal or sensitive data, and you can withdraw at any time without penalty.</p>
             </div>

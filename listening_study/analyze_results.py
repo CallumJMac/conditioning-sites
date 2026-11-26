@@ -22,10 +22,13 @@ model score ~ C(system) on the similarity axis, testing whether removing the
 prompt costs more perceived identity in CosyVoice 3 (embedding in the decoder
 only) than in Qwen3-TTS (embedding conditions the language model).
 
-Sequential stopping rule (fixed before data collection): analyse once 40
-listeners remain after exclusions. If the headline system effect has p < 0.0294,
-stop; otherwise recruit 40 more and test once more at p < 0.0294 (Pocock
-boundary, overall alpha 0.05 over two looks). Report both looks.
+Primary tests (fixed before data collection): for each system and axis, a mixed
+model score ~ 1 on that system's ratings; the intercept is the effect of removing
+the prompt, compared in direction with the automatic metric (SIM-o, UTMOS). Holm
+over the four tests. The system difference above is exploratory.
+
+Sample size (fixed before data collection): recruit until 20 listeners remain
+after exclusions, then analyse once. No interim looks.
 
 Usage:
     python analyze_results.py --results path/to/dir_or_raw.csv --config configs/study.json
@@ -95,6 +98,7 @@ def main() -> int:
 
     import statsmodels.formula.api as smf
 
+    primary = []  # (axis, system, estimate, low, high, p) for the Holm-corrected primary tests
     for axis in ("naturalness", "similarity"):
         data = ratings[ratings.axis == axis].copy()
         if data.empty:
@@ -130,6 +134,26 @@ def main() -> int:
                 print(f"system effect {term}: {model.params[term]:.3f} [95% CI {model.conf_int().loc[term, 0]:.3f}, {model.conf_int().loc[term, 1]:.3f}], p={model.pvalues[term]:.3g}")
             except Exception as error:
                 print(f"system-effect model not estimable: {error}")
+            for system, subset in data.groupby("system"):
+                try:
+                    model = smf.mixedlm(
+                        "score ~ 1", subset, groups="group",
+                        vc_formula={"listener": "0 + C(listener)", "pair": "0 + C(pair)"},
+                    ).fit(reml=True)
+                    low, high = model.conf_int().loc["Intercept"]
+                    primary.append((axis, system, model.params["Intercept"], low, high, model.pvalues["Intercept"]))
+                except Exception as error:
+                    print(f"{system} model not estimable: {error}")
+    if primary:
+        # Holm over the four primary tests (2 systems x 2 axes).
+        order = sorted(range(len(primary)), key=lambda index: primary[index][5])
+        adjusted, running = [0.0] * len(primary), 0.0
+        for rank, index in enumerate(order):
+            running = max(running, min(1.0, (len(primary) - rank) * primary[index][5]))
+            adjusted[index] = running
+        print("\n== primary tests: effect of removing the prompt, per system and axis (Holm over all)")
+        for (axis, system, estimate, low, high, p_value), p_holm in zip(primary, adjusted):
+            print(f"{axis:11s} {system:10s} {estimate:+.3f} [95% CI {low:+.3f}, {high:+.3f}], p={p_value:.3g}, Holm p={p_holm:.3g}")
     return 0
 
 
